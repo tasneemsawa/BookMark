@@ -26,6 +26,7 @@ const validateSiteName = () => {
       return true;
    }
 }
+
 const validateEmail = () => {
 
    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -44,6 +45,26 @@ const validateEmail = () => {
       return true;
    }
 }
+const validatePassword = () => {
+
+   const regex = /^[A-Za-z0-9@$!%*?&]{8,}$/;
+
+   if (!regex.test(inputs[3].value)) {
+      inputs[3].classList.remove('is-valid');
+      inputs[3].classList.add('is-invalid');
+      textDanger[3].textContent =" Invalid! Password must be at least 8 characters and contain only letters, numbers, or @$!%*?&."
+
+      return false;
+   } else {
+      inputs[3].classList.remove('is-invalid');
+      textDanger[3].textContent = ""
+      inputs[3].classList.add('is-valid');
+      return true;
+   }
+}
+
+
+
 const removeBookMark = (index) => {
    sites.splice(index, 1)
    localStorage.setItem("sites", JSON.stringify(sites))
@@ -63,7 +84,7 @@ const updateBookMark = (index) => {
 
 inputs[0].addEventListener("input", validateSiteName)//inputs[0].addEventListener("blur",validateSiteName)// if press out the input
 inputs[2].addEventListener("input", validateEmail)//inputs[0].addEventListener("blur",validateSiteName)// if press out the input
-
+inputs[3].addEventListener("input", validatePassword)
 
 bookMarkForm.addEventListener("submit", (e) => {
 
@@ -71,7 +92,7 @@ bookMarkForm.addEventListener("submit", (e) => {
 
    let isVaild = true
 
-   if (!validateSiteName() || !validateEmail() || inputs[1].value == "") {
+   if (!validateSiteName() || !validateEmail() || inputs[1].value == "" ||!validatePassword()) {
       isVaild = false
    }
    if (!isVaild) return
