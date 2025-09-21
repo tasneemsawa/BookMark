@@ -83,7 +83,7 @@ const updateBookMark = (index) => {
 }
 
 inputs[0].addEventListener("input", validateSiteName)//inputs[0].addEventListener("blur",validateSiteName)// if press out the input
-inputs[2].addEventListener("input", validateEmail)//inputs[0].addEventListener("blur",validateSiteName)// if press out the input
+inputs[2].addEventListener("input", validateEmail)
 inputs[3].addEventListener("input", validatePassword)
 
 bookMarkForm.addEventListener("submit", (e) => {
